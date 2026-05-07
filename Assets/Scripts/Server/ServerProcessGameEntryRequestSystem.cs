@@ -36,9 +36,24 @@ namespace TMG.NFE_Tutorial
 
                 Debug.Log($"Server is assigning Client ID: {clientId} to the {requestedTeamtype.ToString()} team.");
 
+                float3 spawnPosition;
+                switch (requestedTeamtype)
+                {
+                    case TeamType.Blue:
+                        spawnPosition = new float3(-50f, 1f, -50f);
+                        break;
+
+                    case TeamType.Red:
+                        spawnPosition = new float3(50f, 1f, 50f);
+                        break;
+                    
+                    default:
+                        continue;
+                }
+
                 var newChamp = ecb.Instantiate(championPrefab);
                 ecb.SetName(newChamp, "Champion");
-                var spawnPosition = new float3(0, 1, 0);
+                
                 var newTransfrom = LocalTransform.FromPosition(spawnPosition);
                 ecb.SetComponent(newChamp, newTransfrom);
                 ecb.SetComponent(newChamp, new GhostOwner{NetworkId = clientId});
