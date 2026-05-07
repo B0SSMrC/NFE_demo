@@ -25,7 +25,12 @@ namespace TMG.NFE_Tutorial
             foreach(var pendingNetworkId in pendingNetworkIds)
             {
                 ecb.AddComponent<NetworkStreamInGame>(pendingNetworkId);
+                var requestTeamEntity = ecb.CreateEntity();
+                ecb.AddComponent(requestTeamEntity, new MobaTeamRequest{ Value = requestedTeam});
+                ecb.AddComponent(requestTeamEntity, new SendRpcCommandRequest { TargetConnection = pendingNetworkId});
             }
+
+            ecb.Playback(state.EntityManager);
         }
     }
 

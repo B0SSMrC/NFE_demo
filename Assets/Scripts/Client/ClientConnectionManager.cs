@@ -95,7 +95,7 @@ namespace TMG.NFE_Tutorial
 
         private void StartServer()
         {
-            var serverWorld = ClientServerBootstrap.CreateClientWorld("Server World");
+            var serverWorld = ClientServerBootstrap.CreateServerWorld("Server World");
 
             var serverEndpoint = NetworkEndpoint.AnyIpv4.WithPort(Port);
             {
